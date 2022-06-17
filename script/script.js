@@ -12,7 +12,7 @@ function playRound(playerSelection, computerSelection){
     if (
         playerSelectionValid == "STEEN" && computerSelection == "PAPIER" || 
         playerSelectionValid == "PAPIER" && computerSelection == "SCHAAR" || 
-        playerSelectionValid == "STEEN" && computerSelection == "PAPIER")
+        playerSelectionValid == "SCHAAR" && computerSelection == "STEEN")
     {
         computerScore += 1;
         console.log(`Computer wint: ${playerSelectionValid} - ${computerSelection} | Tussenstand: ${playerScore} - ${computerScore}`)
