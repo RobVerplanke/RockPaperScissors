@@ -1,4 +1,3 @@
-
 // Randomly return either ‘rock’, ‘paper’ or ‘scissors’.
 function computerPlay(){
     const options = ["STEEN", "PAPIER", "SCHAAR"];
@@ -9,30 +8,51 @@ function computerPlay(){
 // Play a single round of Rock Paper Scissors.
 function playRound(playerSelection, computerSelection){
     playerSelectionValid = playerSelection.toUpperCase();
+
     if (
         playerSelectionValid == "STEEN" && computerSelection == "PAPIER" || 
         playerSelectionValid == "PAPIER" && computerSelection == "SCHAAR" || 
         playerSelectionValid == "STEEN" && computerSelection == "PAPIER")
     {
-        return `Verloren! ${computerSelection} verslaat ${playerSelectionValid}.`;
+        computerScore += 1;
+        console.log(`Computer wint: ${playerSelectionValid} - ${computerSelection} | Tussenstand: ${playerScore} - ${computerScore}`)
     }
     else if (
         playerSelectionValid == "STEEN" && computerSelection == "SCHAAR" || 
         playerSelectionValid == "PAPIER" && computerSelection == "STEEN" || 
         playerSelectionValid == "SCHAAR" && computerSelection == "PAPIER")
     {
-        return `Gewonnen! ${playerSelectionValid} verslaat ${computerSelection}.`;
+        playerScore += 1;
+        console.log(`Speler wint: ${playerSelectionValid} - ${computerSelection} | Tussenstand: ${playerScore} - ${computerScore}`)
     }
     else if (playerSelectionValid === computerSelection)
     {
-        return `Gelijkspel! Beide kozen voor ${playerSelectionValid}.`;
+        console.log(`Gelijk: ${playerSelectionValid} - ${computerSelection} | Tussenstand: ${playerScore} - ${computerScore}`)
     }
     else 
     {
-        return "Geen geldige invoer!";
+        console.log(`Geen geldige invoer: '${playerSelection}'!`);
     }
 }
 
-const playerSelection = prompt("Papier, steen of schaar?: ")
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+// Play a 5 round game that keeps score and reports a winner or loser at the end.
+function game(){
+    playerScore = 0;
+    computerScore = 0;
+    
+    for(let i = 0; i < 5; i++){
+        let playerSelection = prompt("Papier, steen of schaar?: ")
+        playRound(playerSelection, computerPlay());
+    }
+
+    if (playerScore > computerScore){
+        console.log(`Westrijd gewonnen met eindstand: ${playerScore} - ${computerScore}`);
+    }
+    else if (playerScore < computerScore){
+        console.log(`Westrijd verloren met eindstand: ${playerScore} - ${computerScore}`);
+    }
+    else {
+        console.log(`Gelijkspel met eindstand: ${playerScore} - ${computerScore}`);
+    }
+
+}
