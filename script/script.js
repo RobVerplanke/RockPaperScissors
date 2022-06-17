@@ -1,38 +1,38 @@
 
 // Randomly return either ‘rock’, ‘paper’ or ‘scissors’.
 function computerPlay(){
-    const options = ["steen", "papier", "schaar"];
+    const options = ["STEEN", "PAPIER", "SCHAAR"];
     let computerSelection = Math.floor(Math.random() * 3);
     return options[computerSelection];
 }
 
 // Play a single round of Rock Paper Scissors.
 function playRound(playerSelection, computerSelection){
+    playerSelectionValid = playerSelection.toUpperCase();
     if (
-        playerSelection == "STEEN" && computerSelection == "PAPIER" || 
-        playerSelection == "PAPIER" && computerSelection == "SCHAAR" || 
-        playerSelection == "STEEN" && computerSelection == "PAPIER")
+        playerSelectionValid == "STEEN" && computerSelection == "PAPIER" || 
+        playerSelectionValid == "PAPIER" && computerSelection == "SCHAAR" || 
+        playerSelectionValid == "STEEN" && computerSelection == "PAPIER")
     {
-        console.log(`Verloren! ${computerSelection} verslaat ${playerSelection}.`);
+        return `Verloren! ${computerSelection} verslaat ${playerSelectionValid}.`;
     }
     else if (
-        playerSelection == "STEEN" && computerSelection == "SCHAAR" || 
-        playerSelection == "PAPIER" && computerSelection == "STEEN" || 
-        playerSelection == "SCHAAR" && computerSelection == "PAPIER")
+        playerSelectionValid == "STEEN" && computerSelection == "SCHAAR" || 
+        playerSelectionValid == "PAPIER" && computerSelection == "STEEN" || 
+        playerSelectionValid == "SCHAAR" && computerSelection == "PAPIER")
     {
-        console.log(`Gewonnen! ${playerSelection} verslaat ${computerSelection}.`);
+        return `Gewonnen! ${playerSelectionValid} verslaat ${computerSelection}.`;
     }
-    else if (playerSelection === computerSelection)
+    else if (playerSelectionValid === computerSelection)
     {
-        console.log(`Gelijkspel! Beide kozen voor ${playerSelection}`);
+        return `Gelijkspel! Beide kozen voor ${playerSelectionValid}.`;
     }
     else 
     {
-        console.log("Geen geldige invoer!");
+        return "Geen geldige invoer!";
     }
 }
 
 const playerSelection = prompt("Papier, steen of schaar?: ")
 const computerSelection = computerPlay();
-playRound(playerSelection.toUpperCase(), computerSelection.toUpperCase());
-//console.log(playRound(playerSelection, computerSelection));
+console.log(playRound(playerSelection, computerSelection));
