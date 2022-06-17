@@ -9,25 +9,30 @@ function computerPlay(){
 // Play a single round of Rock Paper Scissors.
 function playRound(playerSelection, computerSelection){
     if (
-        playerSelection == "steen" && computerSelection == "papier" || 
-        playerSelection == "papier" && computerSelection == "schaar" || 
-        playerSelection == "steen" && computerSelection == "papier")
+        playerSelection == "STEEN" && computerSelection == "PAPIER" || 
+        playerSelection == "PAPIER" && computerSelection == "SCHAAR" || 
+        playerSelection == "STEEN" && computerSelection == "PAPIER")
     {
         console.log(`Verloren! ${computerSelection} verslaat ${playerSelection}.`);
     }
     else if (
-        playerSelection == "steen" && computerSelection == "schaar" || 
-        playerSelection == "papier" && computerSelection == "steen" || 
-        playerSelection == "schaar" && computerSelection == "papier")
+        playerSelection == "STEEN" && computerSelection == "SCHAAR" || 
+        playerSelection == "PAPIER" && computerSelection == "STEEN" || 
+        playerSelection == "SCHAAR" && computerSelection == "PAPIER")
     {
         console.log(`Gewonnen! ${playerSelection} verslaat ${computerSelection}.`);
     }
-    else{
-        console.log(`Gelijkspel! Beide ${playerSelection}`);
+    else if (playerSelection === computerSelection)
+    {
+        console.log(`Gelijkspel! Beide kozen voor ${playerSelection}`);
+    }
+    else 
+    {
+        console.log("Geen geldige invoer!");
     }
 }
 
-const playerSelection = "papier";
+const playerSelection = prompt("Papier, steen of schaar?: ")
 const computerSelection = computerPlay();
-playRound(playerSelection, computerSelection);
+playRound(playerSelection.toUpperCase(), computerSelection.toUpperCase());
 //console.log(playRound(playerSelection, computerSelection));
