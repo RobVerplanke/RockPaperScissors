@@ -1,3 +1,26 @@
+const container = document.querySelector('#container-div');
+
+const gameContainer = document.createElement('div');
+const gameText = document.createElement('div');
+const gameButtons = document.createElement('div');
+const scoreBoard = document.createElement('div');
+
+gameContainer.classList.add('game-container');
+gameText.classList.add('game-text');
+gameButtons.classList.add('game-buttons');
+scoreBoard.classList.add('game-scoreboard');
+
+gameContainer.textContent = "gameContainer";
+gameText.textContent = "gameText";
+gameButtons.textContent = "gameButtons";
+scoreBoard.textContent = "scoreBoard";
+
+
+gameContainer.appendChild(gameText);
+gameContainer.appendChild(gameButtons);
+container.appendChild(gameContainer);
+container.appendChild(scoreBoard);
+
 // Randomly return either ‘rock’, ‘paper’ or ‘scissors’.
 function computerPlay(){
     const options = ["STEEN", "PAPIER", "SCHAAR"];
@@ -35,24 +58,26 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+
+
 // Play a 5 round game that keeps score and reports a winner or loser at the end.
-function game(){
-    playerScore = 0;
-    computerScore = 0;
+// function game(){
+//     playerScore = 0;
+//     computerScore = 0;
     
-    for(let i = 0; i < 5; i++){
-        let playerSelection = prompt("Papier, steen of schaar?: ")
-        playRound(playerSelection, computerPlay());
-    }
+//     for(let i = 0; i < 5; i++){
+//         let playerSelection = prompt("Papier, steen of schaar?: ")
+//         playRound(playerSelection, computerPlay());
+//     }
 
-    if (playerScore > computerScore){
-        console.log(`Westrijd gewonnen met eindstand: ${playerScore} - ${computerScore}`);
-    }
-    else if (playerScore < computerScore){
-        console.log(`Westrijd verloren met eindstand: ${playerScore} - ${computerScore}`);
-    }
-    else {
-        console.log(`Gelijkspel met eindstand: ${playerScore} - ${computerScore}`);
-    }
+//     if (playerScore > computerScore){
+//         console.log(`Westrijd gewonnen met eindstand: ${playerScore} - ${computerScore}`);
+//     }
+//     else if (playerScore < computerScore){
+//         console.log(`Westrijd verloren met eindstand: ${playerScore} - ${computerScore}`);
+//     }
+//     else {
+//         console.log(`Gelijkspel met eindstand: ${playerScore} - ${computerScore}`);
+//     }
 
-}
+// }
