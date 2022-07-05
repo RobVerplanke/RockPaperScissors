@@ -4,22 +4,33 @@ const gameContainer = document.createElement('div');
 const gameText = document.createElement('div');
 const gameButtons = document.createElement('div');
 const scoreBoard = document.createElement('div');
+const btn1 = document.createElement('button');
+const btn2 = document.createElement('button');
+const btn3 = document.createElement('button');
+
+let playerScore = 0;
+let computerScore = 0;
 
 gameContainer.classList.add('game-container');
 gameText.classList.add('game-text');
 gameButtons.classList.add('game-buttons');
 scoreBoard.classList.add('game-scoreboard');
+btn1.innerHTML = "Papier";
+btn2.innerHTML = "Steen";
+btn3.innerHTML = "Schaar";
 
-gameContainer.textContent = "gameContainer";
-gameText.textContent = "gameText";
-gameButtons.textContent = "gameButtons";
-scoreBoard.textContent = "scoreBoard";
+btn1.addEventListener('click', () => playRound("PAPIER", computerPlay()));
+btn2.addEventListener('click', () => playRound("STEEN", computerPlay()));
+btn3.addEventListener('click', () => playRound("SCHAAR", computerPlay()));
 
-
+gameButtons.appendChild(btn1);
+gameButtons.appendChild(btn2);
+gameButtons.appendChild(btn3);
 gameContainer.appendChild(gameText);
 gameContainer.appendChild(gameButtons);
 container.appendChild(gameContainer);
 container.appendChild(scoreBoard);
+
 
 // Randomly return either ‘rock’, ‘paper’ or ‘scissors’.
 function computerPlay(){
@@ -38,7 +49,8 @@ function playRound(playerSelection, computerSelection){
         playerSelectionValid == "SCHAAR" && computerSelection == "STEEN")
     {
         computerScore += 1;
-        console.log(`Computer wint: ${playerSelectionValid} - ${computerSelection} | Tussenstand: ${playerScore} - ${computerScore}`)
+        gameText.innerHTML = `Speler: ${playerSelectionValid}` + "<br>" + `Computer: ${computerSelection}` + "<br><br>" + `Computer wint ronde`;
+        scoreBoard.innerHTML = `Tussenstand: ${playerScore} - ${computerScore}` + "<br>";
     }
     else if (
         playerSelectionValid == "STEEN" && computerSelection == "SCHAAR" || 
@@ -46,38 +58,23 @@ function playRound(playerSelection, computerSelection){
         playerSelectionValid == "SCHAAR" && computerSelection == "PAPIER")
     {
         playerScore += 1;
-        console.log(`Speler wint: ${playerSelectionValid} - ${computerSelection} | Tussenstand: ${playerScore} - ${computerScore}`)
+        gameText.innerHTML = `Speler: ${playerSelectionValid}` + "<br>" + `Computer: ${computerSelection}` + "<br><br>" + `Speler wint ronde`;
+        scoreBoard.innerHTML = `Tussenstand: ${playerScore} - ${computerScore}` + "<br>";
     }
     else if (playerSelectionValid === computerSelection)
     {
-        console.log(`Gelijk: ${playerSelectionValid} - ${computerSelection} | Tussenstand: ${playerScore} - ${computerScore}`)
+        gameText.innerHTML = `Speler: ${playerSelectionValid}` + "<br>" + `Computer: ${computerSelection}` + "<br><br>" + `Gelijkspel`;
+        scoreBoard.innerHTML = `Tussenstand: ${playerScore} - ${computerScore}` + "<br>";
     }
-    else 
-    {
-        console.log(`Geen geldige invoer: '${playerSelection}'!`);
+
+    if (computerScore == 5){
+        scoreBoard.innerHTML = "Computer wint wedstrijd! <br>";
+        playerScore = 0;
+        computerScore = 0;
+    }
+    else if (playerScore == 5){
+        scoreBoard.innerHTML = "Speler wint wedstrijd! <br>";
+        playerScore = 0;
+        computerScore = 0;
     }
 }
-
-
-
-// Play a 5 round game that keeps score and reports a winner or loser at the end.
-// function game(){
-//     playerScore = 0;
-//     computerScore = 0;
-    
-//     for(let i = 0; i < 5; i++){
-//         let playerSelection = prompt("Papier, steen of schaar?: ")
-//         playRound(playerSelection, computerPlay());
-//     }
-
-//     if (playerScore > computerScore){
-//         console.log(`Westrijd gewonnen met eindstand: ${playerScore} - ${computerScore}`);
-//     }
-//     else if (playerScore < computerScore){
-//         console.log(`Westrijd verloren met eindstand: ${playerScore} - ${computerScore}`);
-//     }
-//     else {
-//         console.log(`Gelijkspel met eindstand: ${playerScore} - ${computerScore}`);
-//     }
-
-// }
